@@ -55,4 +55,31 @@ app.post('/signin',function(req,res){
     console.log(users);
 })
 
+app.get('/showusers',function(req,res){
+    console.log(users);
+    res.send({});
+})
+
+// We will use tokens as authorization in headers
+app.get('/me',function(req,res){
+    const token = req.headers.token;
+    let foundUsers = users.find(function(u){
+        if(u.token === token)
+            return true;
+        else return false;
+    })
+
+    if(foundUsers){
+        res.json({
+            username:foundUsers.username,
+            password:foundUsers.password
+        })
+    }
+    else{
+        res.json({
+            "msg":"User not found or Invalid token"
+        })
+    }
+})
+
 app.listen(3000);
