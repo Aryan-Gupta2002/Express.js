@@ -1,2 +1,2 @@
 # MERN
-MongoDB, Express.js, React, Next JS
+Express.js
